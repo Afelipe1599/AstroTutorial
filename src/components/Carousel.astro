@@ -1,4 +1,5 @@
 ---
+// filepath: /c:/Proyectos/AstroTutorial/Astro/AstroTutorial/src/components/Carousel.astro
 const { posts } = Astro.props;
 ---
 
@@ -8,8 +9,8 @@ const { posts } = Astro.props;
       <div class="carousel-item">
         <a href={post.url}>
           <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
-          <h3>{post.frontmatter.title}</h3>
         </a>
+        <h3>{post.frontmatter.title}</h3>
       </div>
     ))}
   </div>
@@ -31,12 +32,23 @@ const { posts } = Astro.props;
     border: 1px solid #ccc;
     padding: 1rem;
     background-color: #f8f8e4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .carousel-item img {
-    width: 200px; 
-    height: 150px; 
+    width: 100%; 
+    height: auto;
+    max-width: 150px; 
+    max-height: 150px; 
     object-fit: cover; 
     display: block;
+  }
+  .carousel-item h3 {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0.5rem;
   }
 </style>
 
