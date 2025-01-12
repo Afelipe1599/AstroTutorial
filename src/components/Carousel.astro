@@ -1,0 +1,60 @@
+---
+const { posts } = Astro.props;
+---
+
+<div class="carousel-container">
+  <div class="carousel" id="carousel">
+    {posts.map((post: { url: string; frontmatter: { title: string; description: string; image: { url: string; alt: string } } }) => (
+      <div class="carousel-item">
+        <a href={post.url}>
+          <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
+          <h3>{post.frontmatter.title}</h3>
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .carousel {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.5s ease;
+  }
+  .carousel-item {
+    min-width: 200px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f8f8e4;
+  }
+  .carousel-item img {
+    width: 200px; 
+    height: 150px; 
+    object-fit: cover; 
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let currentIndex = 0;
+    const carousel = document.getElementById("carousel");
+    if (!carousel) return;
+    const items = carousel.children;
+    const totalItems = items.length;
+
+    function moveCarousel() {
+      if (!carousel) return;
+      currentIndex = (currentIndex + 1) % totalItems;
+      const offset = -currentIndex * (items[0] as HTMLElement).offsetWidth;
+      carousel.style.transform = `translateX(${offset}px)`;
+    }
+
+    setInterval(moveCarousel, 3000);
+  });
+</script>
