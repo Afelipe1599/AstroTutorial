@@ -1,13 +1,27 @@
 ---
 import Navigation from "./Navigation.astro";
-import Hamburger from "./Hamburger.astro";
-import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
-    <nav>
-        <Hamburger />
-        <ThemeIcon />
-        <Navigation />
-    </nav>
+  <nav class="header-nav">
+    <div class="brand">
+      <a href="/" class="brand-link">andresv.cloud</a>
+    </div>
+    <Navigation />
+  </nav>
 </header>
+
+<style>
+  .header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f8f8; /* Ajusta el color de fondo según sea necesario */
+  }
+  .brand-link {
+    color: blue;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+</style>

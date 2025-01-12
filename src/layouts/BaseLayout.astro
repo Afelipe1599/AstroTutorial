@@ -14,11 +14,41 @@ const { pageTitle } = Astro.props;
   </head>
   <body>
     <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
+    <div class="page-container">
+      <main class="content">
+        <h1>{pageTitle}</h1>
+        <slot />
+      </main>
+      <Footer />
+    </div>
     <script>
       import "../scripts/menu.js";
     </script>
   </body>
 </html>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+  }
+  header {
+    width: 100%;
+    background-color: #f8f8f8; /* Ajusta el color de fondo según sea necesario */
+  }
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+    padding: 0 1rem; /* Añade padding para dar espacio a los lados */
+  }
+  .content {
+    flex: 1;
+    width: 100%;
+  }
+</style>

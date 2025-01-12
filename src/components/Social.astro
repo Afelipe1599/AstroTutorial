@@ -1,16 +1,23 @@
 ---
-const { platform, username } = Astro.props;
-
-const logos = {
-  linkedin: "/public/linkedin-logo.svg",
-  github: "/public/github-logo.svg",
-  instagram: "/public/instagram-logo.svg",
+const { platform, username } = Astro.props as {
+  platform: "linkedin" | "github" | "instagram";
+  username: string;
 };
 
-const logo = logos[platform.toLowerCase()];
+const logos = {
+  linkedin: "/linkedin-logo.svg",
+  github: "/github-logo.svg",
+  instagram: "/instagram-logo.svg",
+};
+
+const logo = logos[platform.toLowerCase() as keyof typeof logos];
 ---
 
-<a href={`https://www.${platform}.com/${username}`} target="_blank" rel="noopener noreferrer">
+<a
+  href={`https://www.${platform}.com/${username}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
   <img src={logo} alt={`${platform} logo`} />
 </a>
 
@@ -20,7 +27,7 @@ const logo = logos[platform.toLowerCase()];
     display: inline-block;
   }
   img {
-    width: 50px; 
-    height: 50px; 
+    width: 48px;
+    height: 48px;
   }
 </style>

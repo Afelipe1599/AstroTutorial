@@ -1,18 +1,17 @@
 ---
-// filepath: /c:/Proyectos/AstroTutorial/Astro/AstroTutorial/src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Carousel from "../components/Carousel.astro";
 import RotatingCard from "../components/RotatingCard";
-const pageTitle = "Página de inicio";
 const allPosts = Object.values(
   import.meta.glob("../pages/posts/*.md", { eager: true }),
 );
 ---
 
 <BaseLayout>
-  <div class="centered-container"></div>
-  <RotatingCard client:load />
-  <Carousel posts={allPosts} />
+  <div class="centered-container">
+    <RotatingCard client:load />
+    <Carousel posts={allPosts} />
+  </div>
 </BaseLayout>
 
 <style>
@@ -22,5 +21,9 @@ const allPosts = Object.values(
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    padding: 2rem; /* Añade padding para dar espacio alrededor del contenedor */
+  }
+  .centered-container > * {
+    margin-bottom: 2rem; /* Añade margen inferior a cada hijo del contenedor */
   }
 </style>
